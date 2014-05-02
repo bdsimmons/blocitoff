@@ -1,1 +1,101 @@
 @import "bootstrap";
+
+.user-info {
+  margin-top: 9px;
+}
+
+$background-color: #FFFFFF;
+
+.drawer--container {
+  background-color: $background-color;
+  margin: 4em auto;
+  width: 260px;
+  position: relative;
+  z-index: 1;
+  -webkit-transform-style: preserve3d;
+}
+
+.drawer--door, .drawer--content {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  padding: 0.5em;
+  text-align: center;
+}
+
+.drawer--content {
+  background-color: $background-color;
+}
+
+.drawer--action {
+  font-size: 3.3em;
+  line-height: 1em;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.login--submit {
+  width: 100%;
+}
+
+.drawer--door {
+  background-color: red;
+  width: inherit;
+  height: inherit;
+  -webkit-transform: perspective(1000px) rotateX(115deg) translateY(-100px);
+  -webkit-transform-origin: 0% 0%;
+  opacity: 0;
+  position: absolute;
+  &:after {
+    content: "";
+    background-color: darken($background-color, 15%);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+  .drawer--container--open & {
+    -webkit-animation-name: open-door;
+    -webkit-animation-duration: 1.2s;
+    -webkit-animation-easing-function: cubic-bezier(0.06, 0.63, 0, 1);
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-fill-mode: forwards;
+    &:after {
+      -webkit-animation-name: hide-backface;
+      -webkit-animation-duration: 1.2s;
+      -webkit-animation-easing-function: cubic-bezier(0.06, 0.63, 0, 1);
+      -webkit-animation-iteration-count: 1;
+      -webkit-animation-fill-mode: forwards;
+    }
+  }
+}
+
+@-webkit-keyframes open-door {
+  5% {
+    background-color: darken(red, 20%);
+    -webkit-transform: perspective(1000px) rotateX(115deg) translateY(10px);
+    opacity: 1;
+  }
+  15% {
+    -webkit-transform: perspective(1000px) rotateX(115deg) translateY(0px);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: perspective(1000px) rotateX(0deg) translateY(0px);
+    opacity: 1;
+  }
+}
+
+
+@-webkit-keyframes hide-backface {
+  5% {
+    z-index: 0;
+    background-color: darken($background-color, 25%);
+  }
+  100% {
+    z-index: -1;
+    background-color: $background-color;
+  }
+}
