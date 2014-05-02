@@ -1,18 +1,33 @@
-<h2>Sign up</h2>
+<div class="container-fluid">
+  <div class="row drawer--container">
+    <div class="drawer--content col-md-8">
+      Why don't you
+      <div class="js-toggle drawer--action">
+        Create an Account
+      </div>
+      Homie
+    </div>
+    <div class="drawer--door well">
+      <%= form_for(resource, html: { class: "" }, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+        <div>
+          <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email" %>
+        </div><br>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+        <div>
+          <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password" %>
+        </div><br>
 
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+        <div>
+          <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Repeat your password" %>
+        </div><br>
 
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
-
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+        <div>
+          <%= f.submit "Sign up", class: "btn btn-primary js-toggle login--submit" %>
+        </div><br>
+        <%= render "devise/shared/links" %>
+      <% end %>
+    </div>
+  </div>
+</div>
