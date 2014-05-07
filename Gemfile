@@ -20,6 +20,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'capybara'
   gem 'shoulda'
+  gem 'database_cleaner'
 end
 
 group :doc do
