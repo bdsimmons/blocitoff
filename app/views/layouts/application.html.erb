@@ -8,13 +8,13 @@
 </head>
 <body>
 
-  <div class="container-fluid">
+  <div class="container container-fluid">
     <ul class="nav nav-tabs">
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "About", about_path %></li>
         <div class="pull-right user-info">
           <% if current_user %>
-            Hello <%= link_to (current_user.name || current_user.email), current_user %>!
+            Hello <%= current_user.name || current_user.email %>!
             <%= link_to edit_user_registration_path, class: 'btn btn-primary btn-sm' do %>
               <span class="glyphicon glyphicon-user"></span>
             <% end %>
