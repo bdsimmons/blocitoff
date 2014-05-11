@@ -1,28 +1,29 @@
 require 'spec_helper'
 
 describe "Creating lists" do
-  it "redirects to the list index page on success" do
+
+  def create_list(options={})
+    options[:title] ||= "My todo list"
+    options[:description] ||= "This is what I'm doing today"
+
     visit "/lists"
     click_link "New List"
     expect(page).to have_content("New list")
 
-    fill_in "Title", with: "My todo list"
-    fill_in "Description", with: "This is what I am doing today"
+    fill_in "Title", with: options[:title]
+    fill_in "Description", with: options[:description]
     click_button "Create List"
+  end
 
+  it "redirects to the list index page on success" do
+    create_list
     expect(page).to have_content("My todo list")
   end
 
   it "displays an error when the list has no title" do
     expect(List.count).to eq(0)
 
-    visit "/lists"
-    click_link "New List"
-    expect(page).to have_content("New list")
-
-    fill_in "Title", with: ""
-    fill_in "Description", with: "This is what I am doing today"
-    click_button "Create List"
+    create_list title: ""
 
     expect(page).to have_content("error")
     expect(List.count).to eq(0)
@@ -34,13 +35,7 @@ describe "Creating lists" do
   it "displays an error when the list has a title less than 3 characters" do
     expect(List.count).to eq(0)
 
-    visit "/lists"
-    click_link "New List"
-    expect(page).to have_content("New list")
-
-    fill_in "Title", with: "Hi"
-    fill_in "Description", with: "This is what I am doing today"
-    click_button "Create List"
+    create_list title: "Hi"
 
     expect(page).to have_content("error")
     expect(List.count).to eq(0)
@@ -52,13 +47,7 @@ describe "Creating lists" do
   it "displays an error when the list has no description" do
     expect(List.count).to eq(0)
 
-    visit "/lists"
-    click_link "New List"
-    expect(page).to have_content("New list")
-
-    fill_in "Title", with: "Grocery list"
-    fill_in "Description", with: ""
-    click_button "Create List"
+    create_list description: ""
 
     expect(page).to have_content("error")
     expect(List.count).to eq(0)
@@ -70,13 +59,7 @@ describe "Creating lists" do
   it "displays an error when the list has a description less than 5 characters" do
     expect(List.count).to eq(0)
 
-    visit "/lists"
-    click_link "New List"
-    expect(page).to have_content("New list")
-
-    fill_in "Title", with: "Grocery list"
-    fill_in "Description", with: "Food"
-    click_button "Create List"
+    create_list description: "Food"
 
     expect(page).to have_content("error")
     expect(List.count).to eq(0)
