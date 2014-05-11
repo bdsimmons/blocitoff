@@ -30,4 +30,22 @@ describe "Creating lists" do
     visit "/lists"
     expect(page).to_not have_content("This is what I am doing today")
   end
+
+  it "displays an error when the list has a title less than 3 characters" do
+    expect(List.count).to eq(0)
+
+    visit "/lists"
+    click_link "New List"
+    expect(page).to have_content("New list")
+
+    fill_in "Title", with: "Hi"
+    fill_in "Description", with: "This is what I am doing today"
+    click_button "Create List"
+
+    expect(page).to have_content("error")
+    expect(List.count).to eq(0)
+
+    visit "/lists"
+    expect(page).to_not have_content("This is what I am doing today")
+  end
 end
