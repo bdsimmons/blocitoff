@@ -48,4 +48,40 @@ describe "Creating lists" do
     visit "/lists"
     expect(page).to_not have_content("This is what I am doing today")
   end
+
+  it "displays an error when the list has no description" do
+    expect(List.count).to eq(0)
+
+    visit "/lists"
+    click_link "New List"
+    expect(page).to have_content("New list")
+
+    fill_in "Title", with: "Grocery list"
+    fill_in "Description", with: ""
+    click_button "Create List"
+
+    expect(page).to have_content("error")
+    expect(List.count).to eq(0)
+
+    visit "/lists"
+    expect(page).to_not have_content("Grocery list")
+  end
+
+  it "displays an error when the list has a description less than 5 characters" do
+    expect(List.count).to eq(0)
+
+    visit "/lists"
+    click_link "New List"
+    expect(page).to have_content("New list")
+
+    fill_in "Title", with: "Grocery list"
+    fill_in "Description", with: "Food"
+    click_button "Create List"
+
+    expect(page).to have_content("error")
+    expect(List.count).to eq(0)
+
+    visit "/lists"
+    expect(page).to_not have_content("This is what I am doing today")
+  end
 end
