@@ -16,7 +16,6 @@ describe "lists/new" do
     assert_select "form[action=?][method=?]", lists_path, "post" do
       assert_select "input#list_title[name=?]", "list[title]"
       assert_select "textarea#list_description[name=?]", "list[description]"
-      assert_select "input#list_user[name=?]", "list[user]"
     end
   end
 end
