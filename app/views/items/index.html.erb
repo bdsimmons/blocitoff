@@ -1,8 +1,11 @@
 <h1><%= @list.title %></h1>
-<p>Find me in app/views/items/index.html.erb</p>
 
 <ul class="items">
   <% @list.items.each do |item| %>
     <li><%= item.content %></li>
   <% end %>
 </ul>
+
+<p>
+  <%= link_to "New Item", new_list_item_path %>
+</p>
