@@ -5,6 +5,7 @@
     <li id="<%= dom_id(item) %>">
       <%= item.content %>
       <%= link_to "Edit", edit_list_item_path(item) %>
+      <%= link_to "Delete", list_item_path(item), method: :delete, data: { confirm: "Are you sure?" } %>
     </li>
   <% end %>
 </ul>
