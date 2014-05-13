@@ -12,6 +12,7 @@
     <ul class="nav nav-tabs">
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "About", about_path %></li>
+        <li><%= link_to "Lists", lists_path %></li>
         <div class="pull-right user-info">
           <% if current_user %>
             Hello <%= current_user.name || current_user.email %>!
@@ -28,6 +29,12 @@
           <% end %>
         </div>
     </ul>
+
+    <% flash.each do |type, message| %>
+      <div class="alert flash <%= type %>">
+        <%= message %>
+      </div>
+    <% end %>
 
     <%= yield %>
   </div>

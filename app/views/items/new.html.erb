@@ -1,0 +1,4 @@
+<h1><%= @list.title %> - Add List Item</h1>
+<%= form_for [@list, @item] do |form| %>
+  <%= render partial: form %>
+<% end %>
