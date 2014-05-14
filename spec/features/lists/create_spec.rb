@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe "Creating lists" do
+  let!(:user) { create(:user) }
 
   def create_list(options={})
     options[:title] ||= "My todo list"
