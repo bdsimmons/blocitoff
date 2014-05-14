@@ -1,15 +1,8 @@
 require 'spec_helper'
 
-describe "Editing items" do
+describe "Destroying items" do
   let!(:list) { List.create(title: "Groceries", description: "Grocery list.") }
   let!(:item) { list.items.create(content: "Milk") }
-
-  def visit_list(list)
-    visit "/lists"
-    within "#list_#{list.id}" do
-      click_link "List Items"
-    end
-  end
 
   it "is successful" do
     visit_list(list)

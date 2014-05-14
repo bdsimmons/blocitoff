@@ -4,7 +4,7 @@ class ListsController < ApplicationController
   # GET /lists
   # GET /lists.json
   def index
-    @lists = List.all
+    @lists = current_user ? current_user.lists : List.all
   end
 
   # GET /lists/1
@@ -14,7 +14,7 @@ class ListsController < ApplicationController
 
   # GET /lists/new
   def new
-    @list = List.new
+    @list = current_user.lists.build
   end
 
   # GET /lists/1/edit

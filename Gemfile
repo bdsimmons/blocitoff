@@ -21,7 +21,6 @@ group :development, :test do
   gem 'capybara'
   gem 'shoulda'
   gem 'shoulda-matchers', '~> 2.6.1'
-  gem 'database_cleaner'
 end
 
 group :doc do

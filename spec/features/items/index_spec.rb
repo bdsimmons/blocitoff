@@ -3,13 +3,6 @@ require 'spec_helper'
 describe "Viewing items" do
   let!(:list) { List.create(title: "Groceries", description: "Grocery list.") }
 
-  def visit_list(list)
-    visit "/lists"
-    within "#list_#{list.id}" do
-      click_link "List Items"
-    end
-  end
-
   it "displays the title of the list" do
     visit_list(list)
     within("h1") do
