@@ -1,8 +1,8 @@
 module ListHelpers
   def visit_list(list)
     visit "/lists"
-    within "#list_#{list.id}" do
-      click_link "List Items"
+    within dom_id_for(list) do
+      click_link list.title
     end
   end
 end
