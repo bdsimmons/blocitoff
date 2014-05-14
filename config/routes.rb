@@ -1,7 +1,11 @@
 Blocitoff::Application.routes.draw do
 
   resources :lists do
-    resources :items
+    resources :items do
+      member do
+        patch :complete
+      end
+    end
   end
 
   devise_for :users
