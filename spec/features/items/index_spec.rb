@@ -20,9 +20,9 @@ describe "Viewing items" do
     list.items.create(content: "Eggs")
 
     visit_list(list)
-    expect(page.all("ul.items li").size).to eq(2)
+    expect(page.all(".items tr").size).to eq(2)
 
-    within "ul.items" do
+    within ".items" do
       expect(page).to have_content("Milk")
       expect(page).to have_content("Eggs")
     end

@@ -1,19 +1,21 @@
 <h1><%= @list.title %></h1>
 
-<ul class="items">
+<table class="table table-striped items">
+  <tbody>
   <% @list.items.each do |item| %>
-    <li id="<%= dom_id(item) %>">
-      <%= item.content %>
+    <tr id="<%= dom_id(item) %>">
+      <td><%= item.content %></td>
       <% if item.completed? %>
-        <%= item.completed_at %>
+        <td><%= item.completed_at %></td>
       <% else %>
-        <%= link_to "Mark Complete", complete_list_item_path(item), method: :patch %>
+        <td><%= link_to "Mark Complete", complete_list_item_path(item), method: :patch %></td>
       <% end %>
-      <%= link_to "Edit", edit_list_item_path(item) %>
-      <%= link_to "Delete", list_item_path(item), method: :delete, data: { confirm: "Are you sure?" } %>
-    </li>
+      <td><%= link_to "Edit", edit_list_item_path(item) %></td>
+      <td><%= link_to "Delete", list_item_path(item), method: :delete, data: { confirm: "Are you sure?" } %></td>
+    </tr>
   <% end %>
-</ul>
+  </tbody>
+</table>
 
 <p>
   <%= link_to "New Item", new_list_item_path %>

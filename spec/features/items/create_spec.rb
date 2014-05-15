@@ -9,7 +9,7 @@ describe "Adding items" do
     fill_in "Content", with: "Milk"
     click_button "Save"
     expect(page).to have_content("Added list item.")
-    within("ul.items") do
+    within(".items") do
       expect(page).to have_content("Milk")
     end
   end
