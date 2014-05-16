@@ -12,6 +12,7 @@ gem 'faker'
 gem 'devise'
 gem 'figaro'
 gem 'pundit'
+gem 'whenever'
 
 group :development, :test do
   gem 'sqlite3'
