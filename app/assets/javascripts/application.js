@@ -13,4 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require jquery.handsontable.full.js
 //= require_tree .

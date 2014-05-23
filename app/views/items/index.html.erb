@@ -1,14 +1,30 @@
 <h1><%= @list.title %></h1>
 
-<ul class="items">
+<table class="table table-striped items">
+  <thead>
+    <th>Task</th>
+    <th></th>
+    <th>Days Until Deletion</th>
+    <th>Actions</th>
+  </thead>
+  <tbody>
   <% @list.items.each do |item| %>
-    <li id="<%= dom_id(item) %>">
-      <%= item.content %>
-      <%= link_to "Edit", edit_list_item_path(item) %>
-      <%= link_to "Delete", list_item_path(item), method: :delete, data: { confirm: "Are you sure?" } %>
-    </li>
+    <tr id="<%= dom_id(item) %>">
+      <td><%= item.content %></td>
+      <% if item.completed? %>
+        <td><%= item.completed_at %></td>
+      <% else %>
+        <td><%= link_to "Mark Complete", complete_list_item_path(item), method: :patch %></td>
+      <% end %>
+      <td><%= (((item.created_at + 7.days) - item.created_at) / 86400).floor %></td>
+      <td>
+        <%= link_to "Edit", edit_list_item_path(item) %>
+        <%= link_to "Delete", list_item_path(item), method: :delete, data: { confirm: "Are you sure?" } %>
+      </td>
+    </tr>
   <% end %>
-</ul>
+  </tbody>
+</table>
 
 <p>
   <%= link_to "New Item", new_list_item_path %>

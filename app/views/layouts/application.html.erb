@@ -7,12 +7,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-  <div class="container container-fluid">
-    <ul class="nav nav-tabs">
-        <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "About", about_path %></li>
-        <li><%= link_to "Lists", lists_path %></li>
+  <div id="wrap">
+    <div class="container container-fluid">
+      <ul class="nav nav-tabs">
+        <li>
+          <%= link_to current_user ? lists_path : root_path do %>
+            <span class='glyphicon glyphicon-check' style="font-size: 2em;"><b>BlocItOff</b></span>
+          <% end %>
+        </li>
         <div class="pull-right user-info">
           <% if current_user %>
             Hello <%= current_user.name || current_user.email %>!
@@ -28,7 +30,7 @@
             <%= link_to "Sign Up", new_user_registration_path %>
           <% end %>
         </div>
-    </ul>
+      </ul>
 
     <% flash.each do |type, message| %>
       <div class="alert flash <%= type %>">
@@ -37,6 +39,13 @@
     <% end %>
 
     <%= yield %>
+    <hr>
+    </div>
+  </div>
+  <div id="footer">
+    <div class="container">
+      <p class="muted credit">&copy; Benjamin Simmons <%= Time.new.year %>.</p>
+    </div>
   </div>
 
 </body>

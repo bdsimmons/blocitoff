@@ -12,6 +12,7 @@ gem 'faker'
 gem 'devise'
 gem 'figaro'
 gem 'pundit'
+gem 'whenever'
 
 group :development, :test do
   gem 'sqlite3'
@@ -21,7 +22,6 @@ group :development, :test do
   gem 'capybara'
   gem 'shoulda'
   gem 'shoulda-matchers', '~> 2.6.1'
-  gem 'database_cleaner'
 end
 
 group :doc do

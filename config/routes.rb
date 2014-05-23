@@ -1,14 +1,16 @@
 Blocitoff::Application.routes.draw do
 
   resources :lists do
-    resources :items
+    resources :items do
+      member do
+        patch :complete
+      end
+    end
   end
 
   devise_for :users
 
   resources :users, only: [:show, :index, :update]
-
-  get '/about' => "welcome#about"
   
   root to: 'welcome#index'
 

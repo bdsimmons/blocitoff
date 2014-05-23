@@ -42,6 +42,13 @@ class ItemsController < ApplicationController
     else
       flash[:error] = "List item could not be deleted."
     end
+    redirect_to list_items_path, notice: "Item marked as complete."
+  end
+
+  def complete
+    @item = @list.items.find(params[:id])
+    #@item.update_attribute(:completed_at, Time.now)
+    @item.destroy
     redirect_to list_items_path
   end
 
