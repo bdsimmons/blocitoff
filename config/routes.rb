@@ -14,4 +14,11 @@ Blocitoff::Application.routes.draw do
   
   root to: 'welcome#index'
 
+  namespace :api do
+    resources :users
+    resources :lists do
+      resources :items
+    end
+  end
+
 end
