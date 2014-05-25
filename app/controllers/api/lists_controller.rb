@@ -6,19 +6,31 @@ class Api::ListsController < ApiController
     render json: lists, each_serializer: ListSerializer
   end
 
-  def new
-    @list = current_user.lists.build
-  end
-
   def create
     @list = current_user.lists.build(list_params)
-
     if @list.save
       render json: @list, each_serializer: ListSerializer
     else
       render json: @list.errors, status: :unprocessable_entity
     end
+  end
 
+  def show
+    @list = List.find(params[:id])
+    if @list
+      render json: @list, each_serializer: ListSerializer
+    else
+      render json: @list.errors, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @list = List.find(params[:id])
+    if @list.destroy
+      render json: { head: :ok }
+    else
+      render json: @list.errors, status: :unprocessable_entity
+    end
   end
 
   def list_params

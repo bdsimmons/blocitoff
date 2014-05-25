@@ -36,8 +36,8 @@ class ApiController < ApplicationController
     end
   end
 
-  def permission_denied_error
-    flash[:error] = "There was an error authenticating your account."
-    redirect_to root_path
-  end
+  # def permission_denied_error
+  #   flash[:error] = "There was an error authenticating your account."
+  #   redirect_to root_path
+  # end
 end
