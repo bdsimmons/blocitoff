@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140514171042) do
+ActiveRecord::Schema.define(version: 20140526021028) do
 
   create_table "items", force: true do |t|
     t.integer  "list_id"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20140514171042) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "permissions", default: "private"
   end
 
   add_index "lists", ["user_id"], name: "index_lists_on_user_id"
