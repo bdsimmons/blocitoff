@@ -23,6 +23,7 @@ group :development, :test do
   gem 'capybara'
   gem 'shoulda'
   gem 'shoulda-matchers', '~> 2.6.1'
+  gem 'thin'
 end
 
 group :production do
