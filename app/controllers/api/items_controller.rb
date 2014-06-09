@@ -18,7 +18,23 @@ class Api::ItemsController < ApiController
     end
   end
 
+  def show
+    @item = Item.find(params[:id])
+    if @item
+      render json: @item, each_serializer: ItemSerializer
+    else
+      render json: @item.errors, status: :unprocessable_entity
+    end
+  end
+
   def destroy
+    @list = List.find(params[:list_id])
+    @item = @list.items.find(params[:id])
+    if @item.destroy
+      render json: { head: :ok }
+    else
+      render json: @item.errors, status: :unprocessable_entity
+    end
   end
 
   def item_params
